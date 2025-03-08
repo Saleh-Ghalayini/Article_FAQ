@@ -25,7 +25,5 @@
         function set_answer($answer) {
             $this->answer = $answer;
         }
-
     }
-
 ?>
