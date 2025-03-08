@@ -10,65 +10,58 @@
                         [
                             'full_name' => 'Sarah Jamal',
                             'email' => 'sarahjamal6@gmail.com',
-                            'password' => hash('sha256', 'tigerlake12')
+                            'password' => 'tigerlake12'
                         ],
                         [
                             'full_name' => 'Ahmed Khaled',
                             'email' => 'ahmedkhaled8@gmail.com',
-                            'password' => hash('sha256', 'blueberry9')
+                            'password' => 'blueberry9'
                         ],
                         [
                             'full_name' => 'Maya Hassan',
                             'email' => 'mayahassan4@gmail.com',
-                            'password' => hash('sha256', 'quickfox11')
+                            'password' => 'quickfox11'
                         ],
                         [
                             'full_name' => 'Omar Ziad',
                             'email' => 'omarziad3@gmail.com',
-                            'password' => hash('sha256', 'silverstar8')
+                            'password' => 'silverstar8'
                         ],
                         [
                             'full_name' => 'Layla Noor',
                             'email' => 'laylanoor7@gmail.com',
-                            'password' => hash('sha256', 'forestmoon10')
+                            'password' => 'forestmoon10'
                         ],
                         [
                             'full_name' => 'Hassan Rami',
                             'email' => 'hassanrami2@gmail.com',
-                            'password' => hash('sha256', 'redsky99')
+                            'password' => 'redsky99'
                         ],
                         [
                             'full_name' => 'Farah Sami',
                             'email' => 'farahsami5@gmail.com',
-                            'password' => hash('sha256', 'sunsetwave8')
+                            'password' => 'sunsetwave8'
                         ],
                         [
                             'full_name' => 'Kareem Adel',
                             'email' => 'kareemadel9@gmail.com',
-                            'password' => hash('sha256', 'goldenkey12')
+                            'password' => 'goldenkey12'
                         ],
                         [
                             'full_name' => 'Nour Yassin',
                             'email' => 'nouryassin1@gmail.com',
-                            'password' => hash('sha256', 'stormcloud10')
+                            'password' => 'stormcloud10'
                         ],
                         [
                             'full_name' => 'Yousef Omar',
                             'email' => 'yousefomar6@gmail.com',
-                            'password' => hash('sha256', 'brightrise9')
+                            'password' => 'brightrise9'
                         ]
                 ];
 
             foreach($users as $user) {
-                $query = "INSERT INTO users
-                          (full_name, email, password)
-                          VALUES ('{$user['full_name']}',
-                                  '{$user['email']}',
-                                  '{$user['password']}');";
-                if($conn->query($query))
-                    echo "Inserted user: {$user['full_name']}, {$user['email']}, {$user['password']}";
-                else
-                    echo "Couldn't insert user: {$user['full_name']}, {$user['email']}, {$user['password']}";
+                $user_object = new UserSkeleton($user['full_name'], $user['email'], $user['password']);
+                User::createUser($user_object, $conn);
             }
         }
 
@@ -157,14 +150,8 @@
                             ]                
                     ];
             foreach($questions as $question) {
-                $query = "INSERT INTO questions
-                          (question, answer)
-                          VALUES ('{$question['question']}',
-                                  '{$question['answer']}');";
-                if($conn->query($query))
-                    echo "Inserted question: {$question['question']}";
-                else
-                    echo "Couldn't insert question & answer: {$question['question']}" . mysqli_error($conn) . "\n";
+               $question_object = new QuestionSkeleton($question['question'], $question['answer']);
+               Question::CreateQuestion($question_object, $conn);
             }
         }
     }
