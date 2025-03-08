@@ -151,7 +151,7 @@
                     ];
             foreach($questions as $question) {
                $question_object = new QuestionSkeleton($question['question'], $question['answer']);
-               Question::CreateQuestion($question_object, $conn);
+               Question::createQuestion($question_object, $conn);
             }
         }
     }
