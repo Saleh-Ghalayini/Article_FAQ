@@ -2,6 +2,7 @@
 
     require("../../Connection/connection.php");
 
+    
     class Seeder{
         
         public static function seed_users($conn) {
