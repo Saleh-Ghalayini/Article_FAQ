@@ -22,7 +22,7 @@
     } catch (Throwable $e) {
         http_response_code(400);
 
-        Utilities::response("Failed", $e);
+        Utilities::response("Failed", $e->getMessage());
     }
 
 ?>

@@ -24,8 +24,31 @@ articlePages.loadfor = function(page_name) {
     eval("articlePages.load_" + page_name + "();");
 }
 
+articlePages.load_faq = async function() {
+    const submit_btn = document.getElementById("submit");
+
+    submit_btn.addEventListener("click", async() => {
+        const question = document.getElementById("question_input").value;
+        const answer = document.getElementById("answer_input").value;
+
+        if(question && answer) {
+            const question_info = {
+                question: question,
+                answer: answer
+            };
+
+            const response = await articlePages.get_data(articlePages.base_api + "addQuestion.php", question_info);
+
+                window.location.href = "./home.html";
+        } else {
+            alert("Filling the credentials is required");
+        }
+    });
+}
+
 articlePages.load_home = async function (searchQuery = "") {
     const cardsContainer = document.querySelector(".cards-container");
+    const add_question = document.getElementById("plus-btn");
 
     let apiUrl = articlePages.base_api + "getQuestion.php";
     if (searchQuery)
@@ -52,6 +75,11 @@ articlePages.load_home = async function (searchQuery = "") {
 
         cardsContainer.appendChild(card);
     });
+
+    add_question.addEventListener("click", async() => {
+        window.location.href = "./faq.html";
+    });
+
 };
 
 document.getElementById("search-btn").addEventListener("click", function () {
@@ -76,7 +104,7 @@ articlePages.load_signup = async function() {
                 password: password
             };
 
-            const response = await articlePages.post_data(articlePages.base_api + "signup.php", signup_info);
+            const response = await articlePages.get_data(articlePages.base_api + "signup.php", signup_info);
             console.log(response.status);
             if (response.status === "Succeed") {
                 console.log("created user 2");
