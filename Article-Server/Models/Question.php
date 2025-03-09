@@ -1,7 +1,7 @@
 <?php
 
-    require("../Connection/connection.php");
-    require("QuestionSkeleton.php");
+
+    require_once("QuestionSkeleton.php");
 
     
     class Question{
