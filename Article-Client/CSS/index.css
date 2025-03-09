@@ -17,7 +17,6 @@ body {
 .container {
     width: 400px;
     height:400px;
-    color: #154360;
     border-radius: 7px;
     background-color: #ffffff;
     padding: 25px 20px 20px 20px;
@@ -56,6 +55,10 @@ body {
     opacity: 0.5;
 }
 
+.input-shadow:focus {
+    box-shadow: 0 0 8px rgba(47, 49, 50, 0.3);
+}
+
 .input-area i {
     top: 15px;
     right: 20px;
@@ -86,7 +89,7 @@ body {
 }
 
 .container .login-btn:hover {
-    background-color: #e9a811;
+    background-color: #f5b00f;
 }
 
 .container .register {
