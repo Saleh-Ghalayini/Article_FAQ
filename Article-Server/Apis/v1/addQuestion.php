@@ -5,7 +5,7 @@
     require("../../utils/utilities.php");
     require("../../Models/Question.php");
 
-    if(!isset($_GET["question"]) || !isset($_GET["answer"])) {
+    if(empty($_GET["question"]) || empty($_GET["answer"])) {
         http_response_code(400);
 
         Utilities::response("Failed", "Question and answer are required");
