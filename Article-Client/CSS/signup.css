@@ -98,7 +98,7 @@ h1 {
 
 .register-btn:hover {
     background-color: #f5b00f;
-    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+    box-shadow: 0 4px 8px rgba(192, 168, 15, 0.3);
 }
 
 .input-area input::placeholder {
