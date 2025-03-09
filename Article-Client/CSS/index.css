@@ -50,9 +50,13 @@ body {
     padding: 20px 35px 20px 15px;
 }
 
-.input-area input::placeholder, icon {
+.input-area input::placeholder {
     color: #640D5F;
     opacity: 0.5;
+}
+
+.icon {
+    color: #640D5F;
 }
 
 .input-shadow:focus {
@@ -89,7 +93,8 @@ body {
 }
 
 .container .login-btn:hover {
-    background-color: #f5b00f;
+        background-color: #f5b00f;
+        box-shadow: 0 4px 8px rgba(192, 168, 15, 0.3);
 }
 
 .container .register {

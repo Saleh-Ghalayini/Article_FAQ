@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 30px auto;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.plus-container {
+    text-align: right;
+}
+
+.plus-btn {
+    width: 60px;
+    height: 60px;
+    border: none;
+    padding: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #ffffff;
+    border-radius: 10px;
+    background-color: #FFB200;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.plus-btn:hover {
+    background-color: #f5b00f;
+    box-shadow: 0 4px 8px rgba(192, 168, 15, 0.3);
+}
+
+.search-container {
+    display: flex;
+    margin: 30px 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-bar {
+
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+    color: #FFB200;
+    font-weight: 600;
+    background-color: #fff;
+    border-radius: 5px 0 0 5px;
+    border: 2px solid #640D5F;
+    transition: border-color 0.3s;
+}
+
+.search-bar::placeholder {
+    opacity: 0.5;
+    color:#FFB200;
+}
+
+#search-bar:focus {
+    outline: none;
+    border-color: #FFB200;
+}
+
+.search-btn {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    background-color: #FFB200;
+}
+
+.search-btn .search-icon {
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.cards-container {
+    gap: 15px;
+    display: grid;
+    margin-top: 20px;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.card {
+    padding: 20px;
+    color: #ffffff;
+    min-height: 250px;
+    text-align: center;
+    border-radius: 6px;
+    background-color: #EB5B00;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s, background 0.6s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(to bottom right, #FFB200, #D91656);
+}
+
+@media (max-width: 768px) {
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .plus-btn {
+        width: 50px;
+        height: 50px;
+    }
+}
