@@ -1,11 +1,10 @@
 <?php
 
-require(__DIR__ . '/../Connection/connection.php');
-
+    require(__DIR__ . '/../../Connection/connection.php');
     require("../../Models/User.php");
     require("../../Models/Question.php");
-    require("../../Models/UserSkeleton.php");
-    require("../../Models/QuestionSkeleton.php");
+    require_once("../../Models/UserSkeleton.php");
+    require_once("../../Models/QuestionSkeleton.php");
 
     
     class Seeder{
