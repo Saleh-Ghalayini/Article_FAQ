@@ -105,9 +105,8 @@ articlePages.load_signup = async function() {
             };
 
             const response = await articlePages.get_data(articlePages.base_api + "signup.php", signup_info);
-            console.log(response.status);
+            
             if (response.status === "Succeed") {
-                console.log("created user 2");
                 alert("Signed Up Successfully!");
                 window.location.href = "./home.html";
             } else {
