@@ -4,7 +4,7 @@
     require("../../utils/utilities.php");
     require("../../Models/Question.php");
 
-    if(!isset($_GET["question"])) {
+    if(!isset($_GET["question"]) || empty(trim($_GET["question"]))) {
         try {
             $query = $conn->prepare("SELECT * FROM questions");
             $query->execute();

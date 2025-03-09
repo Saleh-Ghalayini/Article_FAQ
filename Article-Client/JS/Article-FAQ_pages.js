@@ -2,9 +2,9 @@ const articlePages = {};
 articlePages.base_api = "http://localhost/Article_FAQ/Article-Server/Apis/v1/";
 
 
-articlePages.get_data = async function(url) {
+articlePages.get_data = async function(url, data = null) {
     try {
-        const response = await axios.get(url);
+        const response = await axios.get(url, {params: data});
         return response.data;
     }catch(error) {
         console.log(error);
@@ -24,8 +24,71 @@ articlePages.loadfor = function(page_name) {
     eval("articlePages.load_" + page_name + "();");
 }
 
+articlePages.load_home = async function (searchQuery = "") {
+    const cardsContainer = document.querySelector(".cards-container");
+
+    let apiUrl = articlePages.base_api + "getQuestion.php";
+    if (searchQuery)
+        apiUrl += `?question=${encodeURIComponent(searchQuery)}`;
+
+    const response = await articlePages.get_data(apiUrl);
+    const questions = response.message || [];
+
+    cardsContainer.innerHTML = "";
+
+    questions.forEach(question => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+
+        const questionText = document.createElement("p");
+        questionText.classList.add("question-text");
+        questionText.innerHTML = `<strong>${question.question}</strong><br />`;
+        card.appendChild(questionText);
+
+        const answerText = document.createElement("p");
+        answerText.classList.add("answer-text");
+        answerText.innerHTML = `<br />${question.answer}`;
+        card.appendChild(answerText);
+
+        cardsContainer.appendChild(card);
+    });
+};
+
+document.getElementById("search-btn").addEventListener("click", function () {
+    const searchInput = document.getElementById("search-bar").value.trim();
+    articlePages.load_home(searchInput);
+});
+articlePages.load_home();
+
 articlePages.load_signup = async function() {
-    
+    const sign_up = document.getElementById("signup-btn");
+
+    sign_up.addEventListener("click", async () => {
+
+        const name = document.getElementById("full-name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+
+        if (name && email && password) {
+            const signup_info = {
+                full_name: name,
+                email: email,
+                password: password
+            };
+
+            const response = await articlePages.post_data(articlePages.base_api + "signup.php", signup_info);
+            console.log(response.status);
+            if (response.status === "Succeed") {
+                console.log("created user 2");
+                alert("Signed Up Successfully!");
+                window.location.href = "./home.html";
+            } else {
+                alert("Invalid input, Try again");
+            }
+        } else {
+            alert("Filling the credentials is required");
+        }
+    });
 }
 
 articlePages.load_login = async function() {
@@ -43,7 +106,6 @@ articlePages.load_login = async function() {
             };
 
             const response = await articlePages.post_data(articlePages.base_api + "login.php", credentials);
-            console.log("response " + response);
             if (response.status === "Succeed") {
                 alert("Logged in Successfully!");
                 window.location.href = "./home.html";
